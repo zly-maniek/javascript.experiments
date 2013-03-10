@@ -1,6 +1,6 @@
 var REEL_MODULE = REEL_MODULE || {};
 
-REEL_MODULE.RESOURCES_COUNT = 14;
+REEL_MODULE.RESOURCES_COUNT = 18;
 REEL_MODULE.SYMBOL_HEIGHT = 100;
 REEL_MODULE.SYMBOL_WIDTH = 100;
 REEL_MODULE.SYMBOLS_COUNT = 100;
@@ -40,7 +40,7 @@ subReelPrototype.load = function( reelId, symbolsCount ) {
    for( var i = 0; i < symbolsCount; i++ ) {
        var symbolNumber = Math.floor( Math.random() * REEL_MODULE.RESOURCES_COUNT );
 
-       var symbolSrc = "resources\/Smashing_Halloween_Icons\/reel" + symbolNumber + ".png";
+       var symbolSrc = "resources\/symbol" + symbolNumber + ".png";
        var id = reelId + "Symbol"+i;
 
        var img = $('<img>');

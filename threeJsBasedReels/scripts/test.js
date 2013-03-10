@@ -14,7 +14,6 @@ var container, stats;
 
 var camera, scene, renderer;
 var progress = 4;
-var objects = [];
 
 function NormalAnimator() {
    if( !(this instanceof NormalAnimator) ) {
@@ -205,18 +204,17 @@ function loadReel() {
     var reel = new Reel();
 
     var materials = [];
-    for( var i = 0; i <14; i++ )
+    for( var i = 0; i <17; i++ )
     {
-      var symbolSrc = "resources\/Smashing_Halloween_Icons\/reel" + i + ".png";
+      var symbolSrc = "resources\/symbol" + i + ".png";
       var texture = THREE.ImageUtils.loadTexture( symbolSrc );
       materials[i - 1] = new THREE.MeshPhongMaterial( { color: 0xffffff, map: texture } );
     }
 
     var plane = new THREE.PlaneGeometry( SYMBOL_WIDTH, SYMBOL_HEIGHT, 1, 1 );
-    var objects = [];
     for( var symbolIndex = 0; symbolIndex < NUMBER_OF_SYMBOLS; symbolIndex++ )
     {
-          var materialIndex = Math.floor( Math.random() * 13 );
+          var materialIndex = Math.floor( Math.random() * 16 );
           var texturedPlane1 = new THREE.Mesh( plane, materials[ materialIndex ] );
           texturedPlane1.visible = true;
 
