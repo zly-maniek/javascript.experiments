@@ -1,0 +1,62 @@
+<!DOCTYPE html> 
+<html lang="en">
+	<head>
+		<title>CSS based reels</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	</head>
+	<body id="body">
+
+        <script src="js/l2o.js"></script>
+		<script src="js/RequestAnimationFrame.js"></script>
+        <script src="js/Animator.js"></script>
+        <script src="js/reels.js"></script>
+		<script src="js/jquery-1.8.3.js"></script>
+		<script>
+
+			var target;
+            var reels = [];
+            var startTime = Date.now();
+
+            $(document).ready( function() {
+               init();
+               animate();
+            } );
+
+
+			function init() {
+                for( var i = 0; i<7; i++ )
+                {
+                    var reel = REEL_MODULE.loadReel(i);
+                    reels.push(reel);
+
+                    REEL_MODULE.append( reel, $("#container") );
+                }
+
+                $("#spinButton").click( function() {
+                    startTime = Date.now();
+                    reels.forEach( function( reel ) {
+                        reel.resetAnimation();
+                    })
+                });
+			}
+
+			function animate() {
+                setTimeout( function() {
+                    update();
+                    requestAnimationFrame( animate );
+                }, 1);
+			}
+
+			function update() {
+                var animationTime = Date.now() - startTime;
+                reels.forEach( function( reel ) {
+                    reel.animate( animationTime );
+                } );
+
+			}
+		</script>
+
+        <div id="container" style="width:600px; height: 400px; position: fixed; overflow: hidden"> </div>
+        <button id="spinButton" style="position: fixed; top: 420px">Spin</button>
+	</body>
+</html>
